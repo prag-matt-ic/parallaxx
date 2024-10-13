@@ -99,7 +99,7 @@ export default function ParralaxX() {
             GSAP.
             <br />
             <br />
-            'overflow: hidden' prevents effects from running on children.
+            overflow: hidden prevents effects from running on children.
           </p>
         </div>
       </section>

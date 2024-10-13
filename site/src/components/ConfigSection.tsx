@@ -5,7 +5,6 @@ const boxClasses =
 
 const controlLineClasses = "absolute h-1 w-full bg-light-grey/10 rounded-r-md";
 
-// TODO: refactor to pass in attributes e.g data-pxx-translate={TranslatePreset.SLOW} and a label for the box e.g Slow
 type Example = {
   label: string;
   attributes: Record<string, string>;
