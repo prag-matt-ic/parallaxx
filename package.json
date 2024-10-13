@@ -30,6 +30,6 @@
   },
   "scripts": {
     "build": "tsc && copyfiles -u 1 src/**/*.css dist",
-    "prepublishOnly": "npm run build"
+    "publish": "npm publish"
   }
 }
