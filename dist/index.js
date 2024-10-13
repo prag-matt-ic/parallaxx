@@ -11,6 +11,8 @@ export var OpacityPreset;
     OpacityPreset["HALF"] = "0.5,1,0.5";
     OpacityPreset["QUARTER"] = "0.25,1,0.25";
 })(OpacityPreset || (OpacityPreset = {}));
+// https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range
+// https://scroll-driven-animations.style/tools/view-timeline/ranges/
 export var RangePreset;
 (function (RangePreset) {
     RangePreset["COVER"] = "cover 0% cover 100%";

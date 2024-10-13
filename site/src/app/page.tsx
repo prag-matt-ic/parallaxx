@@ -3,12 +3,7 @@
 // Import the CSS
 import "@parallaxx/toolkit/dist/parallaxx.css";
 // Import the ParallaxX class and optional preset enums
-import {
-  OpacityPreset,
-  ParallaxX,
-  TranslatePreset,
-  RangePreset,
-} from "@parallaxx/toolkit";
+import { OpacityPreset, ParallaxX, RangePreset } from "@parallaxx/toolkit";
 import { useLayoutEffect } from "react";
 import { twJoin } from "tailwind-merge";
 import ConfigSection from "@/components/ConfigSection";
