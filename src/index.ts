@@ -7,46 +7,40 @@ type Pxx = {
 type PxxParams = {
   translate: Pxx;
   opacity: Pxx;
+  range?: string;
 };
 
 export enum TranslatePreset {
-  SLOW = "slow",
-  SLOWER = "slower",
-  FAST = "fast",
-  FASTER = "faster",
+  SLOW = "50%,0%,-50%",
+  SLOWER = "100%,0%,-100%",
+  FAST = "200%,0%,-200%",
+  FASTER = "300%,0%,-300%",
 }
 
 export enum OpacityPreset {
-  FULL = "full",
-  HALF = "half",
-  QUARTER = "quarter",
+  FULL = "0,1,0",
+  HALF = "0.5,1,0.5",
+  QUARTER = "0.25,1,0.25",
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range
+// https://scroll-driven-animations.style/tools/view-timeline/ranges/
+export enum RangePreset {
+  COVER = "cover 0% cover 100%",
+  CONTAIN = "contain 0% contain 100%",
 }
 
 const NO_TRANSLATE: Pxx = { enter: "0%", middle: "0%", exit: "0%" } as const;
 const NO_OPACITY: Pxx = { enter: "1", middle: "1", exit: "1" } as const;
 
-const TRANSLATE_PRESETS: Record<TranslatePreset, Pxx> = {
-  [TranslatePreset.SLOW]: { enter: "100%", middle: "0%", exit: "-100%" },
-  [TranslatePreset.SLOWER]: { enter: "50%", middle: "0%", exit: "-50%" },
-  [TranslatePreset.FAST]: { enter: "200%", middle: "0%", exit: "-200%" },
-  [TranslatePreset.FASTER]: { enter: "300%", middle: "0%", exit: "-300%" },
-} as const;
-
-const OPACITY_PRESETS: Record<OpacityPreset, Pxx> = {
-  full: { enter: "0.0", middle: "1.0", exit: "0.0" },
-  half: { enter: "0.5", middle: "1.0", exit: "0.5" },
-  quarter: { enter: "0.25", middle: "1.0", exit: "0.25" },
-} as const;
-
 class ParallaxX {
-  isReady: boolean = false;
-
   constructor() {
     this.init();
   }
 
   private async init() {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined")
+      throw new Error("Window is undefined. Use in client environment.");
 
     // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia(
@@ -82,7 +76,6 @@ class ParallaxX {
     parallaxxxElements.forEach((element) => {
       this.setPxxxProperties(element, this.getPxxx(element));
     });
-    this.isReady = true;
   }
 
   private getPxxx(element: HTMLElement): PxxParams {
@@ -91,7 +84,7 @@ class ParallaxX {
       opacity: NO_OPACITY,
     };
 
-    const parseCustomValues = (value: string, isTranslate: boolean): Pxx => {
+    const parseValues = (value: string, isTranslate: boolean): Pxx => {
       // Parse string into enter, middle, and exit values
       // Translate can be anything that CSS translate3d supports: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
       // Opacity can be any value between 0 and 1
@@ -104,11 +97,6 @@ class ParallaxX {
     };
 
     const parseTranslate = (value: string): Pxx => {
-      const isPreset = Object.values(TranslatePreset).includes(
-        value as TranslatePreset
-      );
-      if (isPreset) return TRANSLATE_PRESETS[value as TranslatePreset];
-      // TODO: handle random() value
       // value = "random(20, 40)" - random px between 20 and 40
       if (value.includes("random")) {
         // Generate a random start and end value between the range
@@ -118,16 +106,11 @@ class ParallaxX {
           parseInt(min);
         return { enter: `${random}px`, middle: "0px", exit: `${-random}px` };
       }
-      console.log({ value, isPreset });
-      return parseCustomValues(value, true);
+      return parseValues(value, true);
     };
 
     const parseOpacity = (value: string): Pxx => {
-      const isPreset = Object.values(OpacityPreset).includes(
-        value as OpacityPreset
-      );
-      if (isPreset) return OPACITY_PRESETS[value as OpacityPreset];
-      return parseCustomValues(value, false);
+      return parseValues(value, false);
     };
 
     const translate = element.getAttribute("data-pxx-translate");
@@ -136,14 +119,15 @@ class ParallaxX {
     const opacity = element.getAttribute("data-pxx-opacity");
     if (!!opacity) pxx.opacity = parseOpacity(opacity);
 
+    const animationRange = element.getAttribute("data-pxx-range");
+    if (!!animationRange) pxx.range = animationRange;
+
     return pxx;
   }
 
   private setPxxxProperties(element: HTMLElement, pxx: PxxParams) {
-    console.log({ pxx });
-    const { translate, opacity } = pxx;
-    // Set CSS custom properties
-    // Translate
+    const { translate, opacity, range } = pxx;
+    // Translate properties
     element.style.setProperty(
       "--pxx-enter-translate",
       `translate3d(0, ${translate.enter}, 0)`
@@ -156,10 +140,12 @@ class ParallaxX {
       "--pxx-exit-translate",
       `translate3d(0, ${translate.exit}, 0)`
     );
-    // Opacity
+    // Opacity properties
     element.style.setProperty("--pxx-enter-opacity", opacity.enter);
     element.style.setProperty("--pxx-center-opacity", opacity.middle);
     element.style.setProperty("--pxx-exit-opacity", opacity.exit);
+    // Range
+    if (!!range) element.style.setProperty("--pxx-animation-range", range);
   }
 }
 
