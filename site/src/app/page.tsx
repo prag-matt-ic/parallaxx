@@ -3,7 +3,12 @@
 // Import the CSS
 import "@parallaxx/toolkit/dist/parallaxx.css";
 // Import the ParallaxX class and optional preset enums
-import { OpacityPreset, ParallaxX, RangePreset } from "@parallaxx/toolkit";
+import {
+  OpacityPreset,
+  ParallaxX,
+  RangePreset,
+  TranslatePreset,
+} from "@parallaxx/toolkit";
 import { useLayoutEffect } from "react";
 import { twJoin } from "tailwind-merge";
 import ConfigSection from "@/components/ConfigSection";
@@ -15,11 +20,6 @@ export default function ParralaxX() {
   useLayoutEffect(() => {
     new ParallaxX();
   }, []);
-
-  const boxClasses =
-    "relative flex size-24 items-center rounded text-sm font-medium select-none justify-center bg-light-grey p-1 uppercase";
-
-  const controlLineClasses = "absolute h-0.5 w-full bg-light-grey/20";
 
   return (
     <main className="w-full bg-off-black font-sans">
@@ -51,7 +51,7 @@ export default function ParralaxX() {
         >
           <h2 className="relative z-10 max-w-4xl text-3xl font-bold leading-relaxed text-white">
             A lightweight, framework-agnostic toolkit for implementing smooth
-            parallax and fade effects leveraging the native{" "}
+            parallax and fade effects that leverage the native{" "}
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline"
               target="_blank"
@@ -66,92 +66,151 @@ export default function ParralaxX() {
             <li>✅ Easy to use</li>
             <li>✅ Maximum performance</li>
           </ul>
+          <p className="py-4 text-light-grey">
+            Chrome/Edge: no polyfill, Safari: with polyfill
+          </p>
         </div>
       </header>
 
       <section
+        data-pxx-opacity="0,1,1"
         className={twJoin(
-          "py-20 text-center flex flex-col gap-4 items-center",
+          "py-20 grid grid-cols-2 items-stretch gap-10 xl:gap-16 text-light-grey",
           HORIZONTAL_PADDING
         )}
       >
-        <p className="text-xl text-white max-w-2xl">
-          By only using native browser capabilities and minimizing reliance on
-          JavaScript, ParallaxX outperforms animation frameworks that compute
-          animations on the main thread.
-        </p>
-        <p className="py-4 text-light-grey">
-          Chrome/Edge: no polyfill, Safari: with polyfill
-        </p>
-      </section>
-
-      <ConfigSection />
-
-      <section className="relative py-32">
-        <header className={HORIZONTAL_PADDING}>
-          <h2 className="text-3xl font-extrabold text-white">Opacity</h2>
-        </header>
-
-        <div className="flex w-full items-center justify-center gap-10">
-          <div className={controlLineClasses} />
-
-          <div className={boxClasses} data-pxx-opacity={OpacityPreset.FULL}>
-            <span>Full (0%)</span>
-          </div>
-
-          <div className={boxClasses} data-pxx-opacity={OpacityPreset.QUARTER}>
-            <span>Quarter (25%)</span>
-          </div>
-
-          <div className={boxClasses} data-pxx-opacity={OpacityPreset.HALF}>
-            <span>Half (50%)</span>
-          </div>
-
-          <div className={boxClasses} data-pxx-opacity="0,1,1">
-            <span>
-              Custom
-              <br />
-              0% - 100% - 100%
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative py-32">
-        <header className={HORIZONTAL_PADDING}>
-          <h2 className="text-3xl font-extrabold text-white">
-            Animation Range
-          </h2>
-        </header>
-
-        <div className="flex w-full items-center justify-center gap-10">
-          <div
-            className={twJoin(boxClasses)}
-            // data-pxx-translate={TranslatePreset.SLOW}
-            data-pxx-opacity={OpacityPreset.FULL}
-            data-pxx-range={RangePreset.COVER}
-          >
-            COVER
-          </div>
-          <div
-            className={twJoin(boxClasses)}
-            // data-pxx-translate={TranslatePreset.SLOW}
-            data-pxx-opacity={OpacityPreset.FULL}
-            data-pxx-range={RangePreset.CONTAIN}
-          >
-            CONTAIN
-          </div>
-          <div
-            className={twJoin(boxClasses)}
-            // data-pxx-translate={TranslatePreset.SLOW}
-            data-pxx-opacity="1,1,0"
-            data-pxx-range="contain 50% contain 100%"
-          >
-            CUSTOM
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold">Benefits</h2>
+          <p className="text-lg">
+            By using native browser capabilities and minimizing reliance on
+            JavaScript, ParallaxX outperforms animation frameworks that compute
+            animations on the main thread.
             <br />
-          </div>
+            <br />
+            Opinionated presets makes it extremely easy to add nice parallax
+            effects to your project.
+          </p>
+        </div>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold">Limitations</h2>
+          <p className="text-lg">
+            Functionality is restricted by what browsers support natively. If
+            you need advanced tweening, consider a more complete solution like
+            GSAP.
+            <br />
+            <br />
+            'overflow: hidden' prevents effects from running on children.
+          </p>
         </div>
       </section>
+
+      <ConfigSection
+        heading="Translate"
+        description={
+          <>{/* TODO: explain how these are fed into variables */}</>
+        }
+        examples={[
+          {
+            label: "Faster",
+            attributes: {
+              "data-pxx-translate": TranslatePreset.FASTER,
+            },
+          },
+          {
+            label: "Fast",
+            attributes: {
+              "data-pxx-translate": TranslatePreset.FAST,
+            },
+          },
+          {
+            label: "Slow",
+            attributes: {
+              "data-pxx-translate": TranslatePreset.SLOW,
+            },
+          },
+          {
+            label: "Slower",
+            attributes: {
+              "data-pxx-translate": TranslatePreset.SLOWER,
+            },
+          },
+          {
+            label: "Custom",
+            attributes: {
+              "data-pxx-translate": "240px,0px,-640px",
+            },
+          },
+          {
+            label: "Random",
+            attributes: {
+              "data-pxx-translate": "random(20,200)",
+            },
+          },
+        ]}
+      />
+
+      <ConfigSection
+        heading="Opacity"
+        description={
+          <>{/* TODO: explain how these are fed into variables */}</>
+        }
+        examples={[
+          {
+            label: "Full (0%)",
+            attributes: {
+              "data-pxx-opacity": OpacityPreset.FULL,
+            },
+          },
+          {
+            label: "Quarter (25%)",
+            attributes: {
+              "data-pxx-opacity": OpacityPreset.QUARTER,
+            },
+          },
+          {
+            label: "Half (50%)",
+            attributes: {
+              "data-pxx-opacity": OpacityPreset.HALF,
+            },
+          },
+          {
+            label: "Custom\n0% - 100% - 100%",
+            attributes: {
+              "data-pxx-opacity": "0,1,1",
+            },
+          },
+        ]}
+      />
+
+      <ConfigSection
+        heading="Animation Range"
+        description={
+          <>{/* TODO: explain how these are fed into variables */}</>
+        }
+        examples={[
+          {
+            label: "COVER",
+            attributes: {
+              "data-pxx-opacity": OpacityPreset.FULL,
+              "data-pxx-range": RangePreset.COVER,
+            },
+          },
+          {
+            label: "CONTAIN",
+            attributes: {
+              "data-pxx-opacity": OpacityPreset.FULL,
+              "data-pxx-range": RangePreset.CONTAIN,
+            },
+          },
+          {
+            label: "CUSTOM",
+            attributes: {
+              "data-pxx-opacity": "1,1,0",
+              "data-pxx-range": "contain 50% contain 100%",
+            },
+          },
+        ]}
+      />
 
       {/* Getting Started */}
       <section
