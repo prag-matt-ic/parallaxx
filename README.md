@@ -1,13 +1,13 @@
 # ParallaxX Toolkit
 
-A lightweight, framework-agnostic toolkit for creating smooth parallax scrolling effects using modern web technologies.
+A lightweight, framework-agnostic toolkit for implementing smooth parallax and fade effects leveraging the native [ScrollTimeline](https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline) API. Zero dependencies, minuscule footprint, maximum performance.
 
 ## Installation
 
 Install the package via npm:
 
 ```
-npm install @parallaxx/toolkit
+npm i @parallaxx/toolkit
 ```
 
 ## Getting Started
@@ -24,7 +24,7 @@ import "@parallaxx/toolkit/dist/parallaxx.css";
 ### Initialize
 
 Initialize the ParallaxX class in your application.
-If you're using React/Next.js, initialize it inside useLayoutEffect.
+If you're using React/Next.js, initialize it inside useLayoutEffect:
 
 ```jsx
 useLayoutEffect(() => {
@@ -37,7 +37,7 @@ For other frameworks or vanilla JavaScript, initialize the class after the DOM i
 ### Add Data Attributes
 
 Add data attributes to the elements you want to animate.
-The ParallaxX class finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attributes.
+ParallaxX finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attributes.
 
 ```jsx
 <div
@@ -45,6 +45,8 @@ The ParallaxX class finds elements with 'data-pxx-translate' and 'data-pxx-opaci
   data-pxx-opacity={OpacityPreset.FULL}
 ></div>
 ```
+
+## How It Works
 
 ## Presets
 
@@ -65,17 +67,21 @@ The toolkit provides several presets for convenience.
 
 ## Custom Values
 
-You can also provide custom values instead of using presets. These are comma-separated strings representing the enter, middle, and exit states.
+You can also provide custom values instead of presets. These are comma-separated strings representing the enter, middle, and exit states for translation and opacity.
 
 ```jsx
-// TODO
-```
+// Translate the element from 120px to -120px as it moves through the view.
+// Fade the element from 0.2 opacity to 1.0 as it reaches the center of the view.
+<div data-pxx-translate="120px,0,-120px" data-pxx-opacity="0.2,1.0,1.0"></div>
 
-## Examples
+// Translate the element from 10vh to -20vh as it moves through the view. Aligning in the center (0)
+// Fade the element from 0 opacity to 1.0 as it reaches the center of the view, and then back out again as it exits.
+<div data-pxx-translate="10vh,0,-20vh" data-pxx-opacity="0,1,0"></div>
+```
 
 ## Browser Support
 
-The ParallaxX toolkit uses modern web APIs for smooth animations. If window.ScrollTimeline is not supported, a polyfill will be loaded.
+If window.ScrollTimeline() is not supported, a polyfill is loaded.
 
 ## License
 
