@@ -7,50 +7,40 @@ A lightweight, framework-agnostic toolkit for creating smooth parallax scrolling
 Install the package via npm:
 
 ```
-npm install parallaxx
+npm install @parallaxx/toolkit
 ```
 
 ## Getting Started
 
 ### Import the Toolkit
 
-Import the ParallaxX class with optional preset enums into your project:
-
 ```typescript
-import { ParallaxX, TranslatePreset, OpacityPreset } from "parallaxx";
-import "parallaxx/dist/parallaxx.css";
+// Import the ParallaxX class and optional preset enums
+import { ParallaxX, TranslatePreset, OpacityPreset } from "@parallaxx/toolkit";
+// Import the CSS
+import "@parallaxx/toolkit/dist/parallaxx.css";
 ```
 
-### Initialization
+### Initialize
 
 Initialize the ParallaxX class in your application.
-If you're using React, initialize it inside useEffect/useLayoutEffect:
+If you're using React/Next.js, initialize it inside useLayoutEffect.
 
 ```jsx
-import React, { useLayoutEffect } from "react";
-import { ParallaxX } from "parallaxx";
-import "parallaxx/dist/parallaxx.css";
-
-function App() {
-  useLayoutEffect(() => {
-    new ParallaxX();
-  }, []);
-
-  return <main></main>;
-}
-export default App;
+useLayoutEffect(() => {
+  new ParallaxX();
+}, []);
 ```
 
 For other frameworks or vanilla JavaScript, initialize the class after the DOM is ready.
 
-### Adding Data Attributes
+### Add Data Attributes
 
 Add data attributes to the elements you want to animate.
 The ParallaxX class finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attributes.
 
 ```jsx
 <div
-  className={presetBoxClasses}
   data-pxx-translate={TranslatePreset.FAST}
   data-pxx-opacity={OpacityPreset.FULL}
 ></div>
@@ -77,11 +67,15 @@ The toolkit provides several presets for convenience.
 
 You can also provide custom values instead of using presets. These are comma-separated strings representing the enter, middle, and exit states.
 
+```jsx
+// TODO
+```
+
 ## Examples
 
 ## Browser Support
 
-The ParallaxX toolkit uses modern web APIs for smooth animations. If ScrollTimeline is not supported, a polyfill will be added.
+The ParallaxX toolkit uses modern web APIs for smooth animations. If window.ScrollTimeline is not supported, a polyfill will be loaded.
 
 ## License
 
