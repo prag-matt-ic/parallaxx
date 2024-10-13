@@ -1,0 +1,35 @@
+{
+  "name": "parallaxx",
+  "version": "0.0.1",
+  "description": "A framework-agnostic toolkit for easily configuring native parallax effects.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "parallax",
+    "scroll",
+    "animation",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Matthew Frawley <pragmattic.ltd@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/parallaxx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/parallaxx/issues"
+  },
+  "homepage": "https://github.com/yourusername/parallaxx#readme",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "build": "tsc && copyfiles -u 1 src/**/*.css dist",
+    "prepublishOnly": "npm run build"
+  }
+}
