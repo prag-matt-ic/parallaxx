@@ -37,7 +37,7 @@ const ConfigSection: FC<Props> = ({
 
         <div className="*:block">
           {examples.map(({ displayAttributes: codeAttributes }, index) => (
-            <code key={index} className="text-sm text-light-grey">
+            <code key={index} className="code text-sm text-light-grey">
               {`<div ${codeAttributes} />`}
             </code>
           ))}

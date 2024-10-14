@@ -29,12 +29,6 @@ class ParallaxX {
         // Can this work server side?
         if (typeof window === "undefined")
             throw new Error("Window is undefined. Use in client environment.");
-        // Respect prefers-reduced-motion
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (prefersReducedMotion) {
-            console.warn("Reduced motion is preferred. Parallax effects are disabled.");
-            return;
-        }
         // Load polyfill if needed
         // TODO package the polyfill with the library and load it from there for server side rendering
         if (typeof window.ScrollTimeline === "undefined") {
@@ -61,37 +55,45 @@ class ParallaxX {
             translate: NO_TRANSLATE,
             opacity: NO_OPACITY,
         };
+        const getRandomValue = (randomString) => {
+            // "random(-10|-100)" => random between -10 and -100
+            // "random(0|100)" => random between 0 and 100
+            // Extract the number values from the randomString
+            const match = randomString.match(/random\((-?\d+)\|(-?\d+)\)/);
+            if (!match)
+                throw new Error("Invalid input string");
+            const min = Number(match[1]);
+            const max = Number(match[2]);
+            // Generate a random number between the two values - preserving the sign
+            const random = Math.floor(Math.random() * (max - min + 1)) + min;
+            // Return as a string
+            return `${random}px`;
+        };
         const parseValues = (value, isTranslate) => {
             // Parse string into enter, middle, and exit values
             // Translate can be anything that CSS translate3d supports: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
             // Opacity can be any value between 0 and 1
             const values = value.split(",");
+            console.log({ values });
             if (values?.length === 3) {
-                const [enter, middle, exit] = values;
+                let [enter, middle, exit] = values;
+                if (enter.includes("random"))
+                    enter = getRandomValue(enter);
+                if (middle.includes("random"))
+                    middle = getRandomValue(middle);
+                if (exit.includes("random"))
+                    exit = getRandomValue(exit);
+                console.log({ enter, middle, exit });
                 return { enter, middle, exit };
             }
             return isTranslate ? NO_TRANSLATE : NO_OPACITY;
         };
-        const parseTranslate = (value) => {
-            // value = "random(20, 40)" - random px between 20 and 40
-            if (value.includes("random")) {
-                // Generate a random start and end value between the range
-                const [min, max] = value.match(/\d+/g);
-                const random = Math.floor(Math.random() * (parseInt(max) - parseInt(min) + 1)) +
-                    parseInt(min);
-                return { enter: `${random}px`, middle: "0px", exit: `${-random}px` };
-            }
-            return parseValues(value, true);
-        };
-        const parseOpacity = (value) => {
-            return parseValues(value, false);
-        };
         const translate = element.getAttribute("data-pxx-translate");
         if (!!translate)
-            pxx.translate = parseTranslate(translate);
+            pxx.translate = parseValues(translate, true);
         const opacity = element.getAttribute("data-pxx-opacity");
         if (!!opacity)
-            pxx.opacity = parseOpacity(opacity);
+            pxx.opacity = parseValues(opacity, false);
         const animationRange = element.getAttribute("data-pxx-range");
         if (!!animationRange)
             pxx.range = animationRange;

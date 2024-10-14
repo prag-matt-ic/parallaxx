@@ -73,6 +73,16 @@ Opacity values range between 0 and 1.
 <div data-pxx-translate="10vh,0,-20vh" data-pxx-opacity="0,1,0"></div>
 ```
 
+#### Random Values
+
+Values can be randomly generated too - which is useful for groups of mapped elements.
+The format is "random(min|max)"
+
+```jsx
+// The following will result in a random exit value between -10px and -200px
+<div data-pxx-translate="0,0,random(-10,-200)"
+```
+
 ## How It Works
 
 By utilizing native browser capabilities and minimizing reliance on JavaScript, ParallaxX outperforms animation frameworks that compute animations on the main thread.
