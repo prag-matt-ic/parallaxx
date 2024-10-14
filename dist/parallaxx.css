@@ -2,19 +2,19 @@
 @property --pxx-enter-translate {
   inherits: false;
   syntax: "<transform-function>";
-  initial-value: translate3d(0, 0%, 0);
+  initial-value: translate3d(0, 0, 0);
 }
 
 @property --pxx-center-translate {
   inherits: false;
   syntax: "<transform-function>";
-  initial-value: translate3d(0, 0%, 0);
+  initial-value: translate3d(0, 0, 0);
 }
 
 @property --pxx-exit-translate {
   inherits: false;
   syntax: "<transform-function>";
-  initial-value: translate3d(0, 0%, 0);
+  initial-value: translate3d(0, 0, 0);
 }
 
 /* Opacity */
@@ -43,7 +43,6 @@
   initial-value: cover 0% cover 100%;
 }
 
-/* Keyframes */
 @keyframes parallaxx {
   0% {
     transform: var(--pxx-enter-translate);
@@ -63,8 +62,13 @@
 [data-pxx-opacity] {
   animation: linear parallaxx both;
   animation-timeline: view(y);
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range */
   animation-range: var(--pxx-animation-range);
 }
 
-/* https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=cover&range-start-percentage=0&range-end-name=cover&range-end-percentage=100&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=reveal&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes */
+@media (prefers-reduced-motion) {
+  [data-pxx-translate],
+  [data-pxx-opacity] {
+    animation: none;
+    animation-timeline: none;
+  }
+}

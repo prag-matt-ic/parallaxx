@@ -1,8 +1,6 @@
 "use client";
 
-// Import the CSS
 import "@parallaxx/toolkit/dist/parallaxx.css";
-// Import the ParallaxX class and optional preset enums
 import {
   OpacityPreset,
   ParallaxX,
@@ -12,11 +10,9 @@ import {
 import { useLayoutEffect } from "react";
 import { twJoin } from "tailwind-merge";
 import ConfigSection from "@/components/ConfigSection";
-
-const HORIZONTAL_PADDING = "w-full px-6 sm:px-12 md:px-24 lg:px-32 xl:px-48";
+import { HORIZONTAL_PADDING } from "@/components/styles";
 
 export default function ParralaxX() {
-  // Initialize ParallaxX
   useLayoutEffect(() => {
     new ParallaxX();
   }, []);
@@ -49,7 +45,7 @@ export default function ParralaxX() {
           )}
           data-pxx-opacity="1,1,0.0"
         >
-          <h2 className="relative z-10 max-w-4xl text-3xl font-bold leading-relaxed text-white">
+          <h2 className="relative z-10 max-w-3xl text-2xl font-bold leading-relaxed text-white">
             A lightweight, framework-agnostic toolkit for implementing smooth
             parallax and fade effects that leverage the native{" "}
             <a
@@ -82,13 +78,18 @@ export default function ParralaxX() {
         <div className="space-y-4">
           <h2 className="text-2xl font-bold">Benefits</h2>
           <p className="text-lg">
-            By using native browser capabilities and minimizing reliance on
-            JavaScript, ParallaxX outperforms animation frameworks that compute
-            animations on the main thread.
+            <span className="font-bold">Fast:</span> By using native browser
+            capabilities and minimizing reliance on JavaScript, ParallaxX
+            outperforms animation frameworks that compute animations on the main
+            thread.
             <br />
             <br />
-            Opinionated presets makes it extremely easy to add nice parallax
-            effects to your project.
+            <span className="font-bold">Simple:</span> Opinionated presets makes
+            it extremely easy to add nice parallax effects to your project.
+            <br />
+            <br />
+            <span className="font-bold">Accessible:</span> Respects user
+            preferences for reduced motion.
           </p>
         </div>
         <div className="space-y-4">
@@ -110,38 +111,26 @@ export default function ParralaxX() {
           <>{/* TODO: explain how these are fed into variables */}</>
         }
         examples={[
-          {
-            label: "Faster",
-            attributes: {
-              "data-pxx-translate": TranslatePreset.FASTER,
-            },
-          },
-          {
-            label: "Fast",
-            attributes: {
-              "data-pxx-translate": TranslatePreset.FAST,
-            },
-          },
-          {
-            label: "Slow",
-            attributes: {
-              "data-pxx-translate": TranslatePreset.SLOW,
-            },
-          },
-          {
-            label: "Slower",
-            attributes: {
-              "data-pxx-translate": TranslatePreset.SLOWER,
-            },
-          },
+          ...Object.keys(TranslatePreset).map((key) => {
+            return {
+              label: key,
+              displayAttributes: `data-pxx-translate={TranslatePreset.${key}}`,
+              attributes: {
+                "data-pxx-translate":
+                  TranslatePreset[key as keyof typeof TranslatePreset],
+              },
+            };
+          }),
           {
             label: "Custom",
+            displayAttributes: `data-pxx-translate="240px,0px,-640px"`,
             attributes: {
               "data-pxx-translate": "240px,0px,-640px",
             },
           },
           {
             label: "Random",
+            displayAttributes: `data-pxx-translate="random(20,200)"`,
             attributes: {
               "data-pxx-translate": "random(20,200)",
             },
@@ -155,28 +144,21 @@ export default function ParralaxX() {
           <>{/* TODO: explain how these are fed into variables */}</>
         }
         examples={[
+          ...Object.keys(OpacityPreset).map((key) => {
+            return {
+              label: key,
+              displayAttributes: `data-pxx-opacity={OpacityPreset.${key}}`,
+              attributes: {
+                "data-pxx-opacity":
+                  OpacityPreset[key as keyof typeof OpacityPreset],
+              },
+            };
+          }),
           {
-            label: "Full (0%)",
+            label: "Custom",
+            displayAttributes: `data-pxx-opacity="0.2,1.0,0.6"`,
             attributes: {
-              "data-pxx-opacity": OpacityPreset.FULL,
-            },
-          },
-          {
-            label: "Quarter (25%)",
-            attributes: {
-              "data-pxx-opacity": OpacityPreset.QUARTER,
-            },
-          },
-          {
-            label: "Half (50%)",
-            attributes: {
-              "data-pxx-opacity": OpacityPreset.HALF,
-            },
-          },
-          {
-            label: "Custom\n0% - 100% - 100%",
-            attributes: {
-              "data-pxx-opacity": "0,1,1",
+              "data-pxx-opacity": "0.2,1.0,0.6",
             },
           },
         ]}
@@ -188,24 +170,21 @@ export default function ParralaxX() {
           <>{/* TODO: explain how these are fed into variables */}</>
         }
         examples={[
+          ...Object.keys(RangePreset).map((key) => {
+            return {
+              label: key,
+              displayAttributes: `data-pxx-range={RangePreset.${key}} data-pxx-opacity={OpacityPreset.FADE_IN_OUT}`,
+              attributes: {
+                "data-pxx-opacity": OpacityPreset.FADE_IN_OUT,
+                "data-pxx-range": RangePreset[key as keyof typeof RangePreset],
+              },
+            };
+          }),
           {
-            label: "COVER",
+            label: "Custom",
+            displayAttributes: `data-pxx-range="contain 50% contain 100%" data-pxx-opacity={OpacityPreset.FADE_IN_OUT}`,
             attributes: {
-              "data-pxx-opacity": OpacityPreset.FULL,
-              "data-pxx-range": RangePreset.COVER,
-            },
-          },
-          {
-            label: "CONTAIN",
-            attributes: {
-              "data-pxx-opacity": OpacityPreset.FULL,
-              "data-pxx-range": RangePreset.CONTAIN,
-            },
-          },
-          {
-            label: "CUSTOM",
-            attributes: {
-              "data-pxx-opacity": "1,1,0",
+              "data-pxx-opacity": OpacityPreset.FADE_IN_OUT,
               "data-pxx-range": "contain 50% contain 100%",
             },
           },
@@ -241,6 +220,13 @@ export default function ParralaxX() {
         <code>
           {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.HALF} />`}
         </code>
+      </section>
+
+      {/* Showcae */}
+      <section className={twJoin(HORIZONTAL_PADDING, "h-svh py-20")}>
+        <h2 className="text-2xl font-bold text-light-grey">
+          Showcase coming soon...
+        </h2>
       </section>
     </main>
   );

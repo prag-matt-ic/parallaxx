@@ -18,9 +18,10 @@ export enum TranslatePreset {
 }
 
 export enum OpacityPreset {
-  FULL = "0,1,0",
-  HALF = "0.5,1,0.5",
-  QUARTER = "0.25,1,0.25",
+  FADE_IN = "0,1,1",
+  FADE_IN_OUT = "0,1,0",
+  HALF_FADE_IN = "0.5,1,1",
+  HALF_FADE_IN_OUT = "0.5,1,0.5",
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range
@@ -39,6 +40,7 @@ class ParallaxX {
   }
 
   private async init() {
+    // Can this work server side?
     if (typeof window === "undefined")
       throw new Error("Window is undefined. Use in client environment.");
 
@@ -54,6 +56,7 @@ class ParallaxX {
     }
 
     // Load polyfill if needed
+    // TODO package the polyfill with the library and load it from there for server side rendering
     if (typeof (window as any).ScrollTimeline === "undefined") {
       console.warn("ScrollTimeline is not supported. Loading polyfill.");
       const script = document.createElement("script");

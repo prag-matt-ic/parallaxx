@@ -1,4 +1,6 @@
 import React, { type ReactNode, type FC } from "react";
+import { twJoin } from "tailwind-merge";
+import { HORIZONTAL_PADDING } from "./styles";
 
 const boxClasses =
   "relative flex size-24 items-center rounded text-sm font-medium select-none justify-center bg-light-grey p-1 uppercase";
@@ -7,6 +9,7 @@ const controlLineClasses = "absolute h-1 w-full bg-light-grey/10 rounded-r-md";
 
 type Example = {
   label: string;
+  displayAttributes: string;
   attributes: Record<string, string>;
 };
 
@@ -18,14 +21,19 @@ type Props = {
 
 const ConfigSection: FC<Props> = ({ heading, description, examples }) => {
   return (
-    <section className="relative px-6 sm:px-12 md:px-24 lg:px-32 xl:px-48 grid grid-rows-1 grid-cols-[auto_1fr] w-full py-24">
+    <section
+      className={twJoin(
+        HORIZONTAL_PADDING,
+        "relative grid grid-rows-1 grid-cols-[auto_1fr] w-full py-24"
+      )}
+    >
       <div className="bg-light-grey/10 space-y-2 p-8 *:block rounded-md">
         <h2 className="text-3xl font-extrabold text-white">{heading}</h2>
 
         <p>{description}</p>
-        {examples.map(({ attributes }, index) => (
+        {examples.map(({ displayAttributes: codeAttributes }, index) => (
           <code key={index} className="text-sm text-light-grey">
-            {`<div ${Object.entries(attributes)} />`}
+            {`<div ${codeAttributes} />`}
           </code>
         ))}
       </div>

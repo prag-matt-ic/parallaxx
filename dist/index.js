@@ -7,9 +7,10 @@ export var TranslatePreset;
 })(TranslatePreset || (TranslatePreset = {}));
 export var OpacityPreset;
 (function (OpacityPreset) {
-    OpacityPreset["FULL"] = "0,1,0";
-    OpacityPreset["HALF"] = "0.5,1,0.5";
-    OpacityPreset["QUARTER"] = "0.25,1,0.25";
+    OpacityPreset["FADE_IN"] = "0,1,1";
+    OpacityPreset["FADE_IN_OUT"] = "0,1,0";
+    OpacityPreset["HALF_FADE_IN"] = "0.5,1,1";
+    OpacityPreset["HALF_FADE_IN_OUT"] = "0.5,1,0.5";
 })(OpacityPreset || (OpacityPreset = {}));
 // https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range
 // https://scroll-driven-animations.style/tools/view-timeline/ranges/
@@ -25,6 +26,7 @@ class ParallaxX {
         this.init();
     }
     async init() {
+        // Can this work server side?
         if (typeof window === "undefined")
             throw new Error("Window is undefined. Use in client environment.");
         // Respect prefers-reduced-motion
@@ -34,6 +36,7 @@ class ParallaxX {
             return;
         }
         // Load polyfill if needed
+        // TODO package the polyfill with the library and load it from there for server side rendering
         if (typeof window.ScrollTimeline === "undefined") {
             console.warn("ScrollTimeline is not supported. Loading polyfill.");
             const script = document.createElement("script");

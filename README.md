@@ -46,28 +46,15 @@ ParallaxX finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attrib
 ```jsx
 <div
   data-pxx-translate={TranslatePreset.FAST}
-  data-pxx-opacity={OpacityPreset.FULL}
+  data-pxx-opacity={OpacityPreset.FADE_IN}
 ></div>
 ```
 
-## Presets
+### Presets
 
-The toolkit provides several presets for convenience.
+The toolkit provides several presets for convenience. Simply import "TranslatePreset" and "OpacityPreset" to use them.
 
-### Translate
-
-- TranslatePreset.SLOW : { enter: '100%', middle: '0%', exit: '-100%' }
-- TranslatePreset.SLOWER : { enter: '50%', middle: '0%', exit: '-50%' }
-- TranslatePreset.FAST : { enter: '200%', middle: '0%', exit: '-200%' }
-- TranslatePreset.FASTER : { enter: '300%', middle: '0%', exit: '-300%' }
-
-### Opacity
-
-- OpacityPreset.FULL : { enter: '0.0', middle: '1.0', exit: '0.0' }
-- OpacityPreset.HALF : { enter: '0.5', middle: '1.0', exit: '0.5' }
-- OpacityPreset.QUARTER : { enter: '0.25', middle: '1.0', exit: '0.25' }
-
-## Custom Values
+### Custom Values
 
 For greater flexibility you can provide custom values.
 These are comma-separated strings representing the enter, middle, and exit states.
