@@ -1,6 +1,6 @@
 export declare enum TranslatePreset {
-    SLOW = "50%,0%,-50%",
-    SLOWER = "100%,0%,-100%",
+    SLOWER = "50%,0%,-50%",
+    SLOW = "100%,0%,-100%",
     FAST = "200%,0%,-200%",
     FASTER = "300%,0%,-300%"
 }

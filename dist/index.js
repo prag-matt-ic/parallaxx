@@ -1,7 +1,7 @@
 export var TranslatePreset;
 (function (TranslatePreset) {
-    TranslatePreset["SLOW"] = "50%,0%,-50%";
-    TranslatePreset["SLOWER"] = "100%,0%,-100%";
+    TranslatePreset["SLOWER"] = "50%,0%,-50%";
+    TranslatePreset["SLOW"] = "100%,0%,-100%";
     TranslatePreset["FAST"] = "200%,0%,-200%";
     TranslatePreset["FASTER"] = "300%,0%,-300%";
 })(TranslatePreset || (TranslatePreset = {}));

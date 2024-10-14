@@ -19,7 +19,11 @@ type Props = {
   examples: Example[];
 };
 
-const ConfigSection: FC<Props> = ({ heading, description, examples }) => {
+const ConfigSection: FC<Props> = ({
+  heading,
+  description = null,
+  examples,
+}) => {
   return (
     <section
       className={twJoin(
@@ -30,7 +34,7 @@ const ConfigSection: FC<Props> = ({ heading, description, examples }) => {
       <div className="bg-light-grey/10 space-y-2 p-8 *:block rounded-md">
         <h2 className="text-3xl font-extrabold text-white">{heading}</h2>
 
-        <p>{description}</p>
+        {description}
         {examples.map(({ displayAttributes: codeAttributes }, index) => (
           <code key={index} className="text-sm text-light-grey">
             {`<div ${codeAttributes} />`}

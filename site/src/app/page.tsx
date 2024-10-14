@@ -108,7 +108,14 @@ export default function ParralaxX() {
       <ConfigSection
         heading="Translate"
         description={
-          <>{/* TODO: explain how these are fed into variables */}</>
+          <p className="text-white">
+            The &apos;data-pxx-translate&apos; property accepts a preset, or 3
+            comma separated string values. These 3 values set the enter (0%),
+            middle (50%), and exit (100%) values of the Y translation.
+            <br />
+            For example, &apos;100px,0px,0px&apos; will move the element up from
+            100px to 0px as it enters the viewport.
+          </p>
         }
         examples={[
           ...Object.keys(TranslatePreset).map((key) => {
@@ -228,6 +235,8 @@ export default function ParralaxX() {
           Showcase coming soon...
         </h2>
       </section>
+
+      {/* TODO: add performance testing. */}
     </main>
   );
 }
