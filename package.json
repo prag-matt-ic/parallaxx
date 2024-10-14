@@ -1,8 +1,8 @@
 {
   "name": "@parallaxx/toolkit",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Framework-agnostic toolkit for implementing smooth parallax and fade effects using the native ScrollTimeline API. Zero dependencies, maximum performance.",
-  "main": "dist/index.js",
+  "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"
@@ -25,13 +25,18 @@
   "bugs": {
     "url": "https://github.com/prag-matt-ic/parallaxx/issues"
   },
+  "sideEffects": false,
   "homepage": "https://github.com/prag-matt-ic/parallaxx/tree/main",
   "devDependencies": {
     "copyfiles": "^2.4.1",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "terser": "^5.34.1",
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "build": "tsc && copyfiles -u 1 src/**/*.css dist",
+    "build": "tsc && terser dist/index.js --compress --mangle --output dist/index.min.js && copyfiles -u 1 src/**/*.css dist && npx postcss dist/index.css > dist/parallaxx.css",
     "publish": "npm publish --access public"
   }
 }

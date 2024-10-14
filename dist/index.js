@@ -12,8 +12,6 @@ export var OpacityPreset;
     OpacityPreset["HALF_FADE_IN"] = "0.5,1,1";
     OpacityPreset["HALF_FADE_IN_OUT"] = "0.5,1,0.5";
 })(OpacityPreset || (OpacityPreset = {}));
-// https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range
-// https://scroll-driven-animations.style/tools/view-timeline/ranges/
 export var RangePreset;
 (function (RangePreset) {
     RangePreset["COVER"] = "cover 0% cover 100%";
@@ -26,11 +24,8 @@ class ParallaxX {
         this.init();
     }
     async init() {
-        // Can this work server side?
         if (typeof window === "undefined")
             throw new Error("Window is undefined. Use in client environment.");
-        // Load polyfill if needed
-        // TODO package the polyfill with the library and load it from there for server side rendering
         if (typeof window.ScrollTimeline === "undefined") {
             console.warn("ScrollTimeline is not supported. Loading polyfill.");
             const script = document.createElement("script");
@@ -56,25 +51,16 @@ class ParallaxX {
             opacity: NO_OPACITY,
         };
         const getRandomValue = (randomString) => {
-            // "random(-10|-100)" => random between -10 and -100
-            // "random(0|100)" => random between 0 and 100
-            // Extract the number values from the randomString
             const match = randomString.match(/random\((-?\d+)\|(-?\d+)\)/);
             if (!match)
                 throw new Error("Invalid input string");
             const min = Number(match[1]);
             const max = Number(match[2]);
-            // Generate a random number between the two values - preserving the sign
             const random = Math.floor(Math.random() * (max - min + 1)) + min;
-            // Return as a string
             return `${random}px`;
         };
         const parseValues = (value, isTranslate) => {
-            // Parse string into enter, middle, and exit values
-            // Translate can be anything that CSS translate3d supports: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
-            // Opacity can be any value between 0 and 1
             const values = value.split(",");
-            console.log({ values });
             if (values?.length === 3) {
                 let [enter, middle, exit] = values;
                 if (enter.includes("random"))
@@ -83,7 +69,6 @@ class ParallaxX {
                     middle = getRandomValue(middle);
                 if (exit.includes("random"))
                     exit = getRandomValue(exit);
-                console.log({ enter, middle, exit });
                 return { enter, middle, exit };
             }
             return isTranslate ? NO_TRANSLATE : NO_OPACITY;
@@ -101,15 +86,12 @@ class ParallaxX {
     }
     setPxxxProperties(element, pxx) {
         const { translate, opacity, range } = pxx;
-        // Translate properties
         element.style.setProperty("--pxx-enter-translate", `translate3d(0, ${translate.enter}, 0)`);
         element.style.setProperty("--pxx-center-translate", `translate3d(0, ${translate.middle}, 0)`);
         element.style.setProperty("--pxx-exit-translate", `translate3d(0, ${translate.exit}, 0)`);
-        // Opacity properties
         element.style.setProperty("--pxx-enter-opacity", opacity.enter);
         element.style.setProperty("--pxx-center-opacity", opacity.middle);
         element.style.setProperty("--pxx-exit-opacity", opacity.exit);
-        // Range
         if (!!range)
             element.style.setProperty("--pxx-animation-range", range);
     }
