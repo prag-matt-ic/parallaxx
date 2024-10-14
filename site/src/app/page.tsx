@@ -108,13 +108,22 @@ export default function ParralaxX() {
       <ConfigSection
         heading="Translate"
         description={
-          <p className="text-white">
-            The &apos;data-pxx-translate&apos; property accepts a preset, or 3
-            comma separated string values. These 3 values set the enter (0%),
-            middle (50%), and exit (100%) values of the Y translation.
+          <p className="text-light-grey max-w-lg">
+            Simply add a <span className="font-bold">data-pxx-translate</span>{" "}
+            attribute to an element.
             <br />
-            For example, &apos;100px,0px,0px&apos; will move the element up from
-            100px to 0px as it enters the viewport.
+            There are {Object.keys(TranslatePreset).length} Translate Presets to
+            choose from, or you can use a custom value...
+            <br />
+            <br />
+            The custom value must be 3 comma separated string values. These set
+            the enter (0%), middle (50%), and exit (100%) values of the Y
+            translation.
+            <br />
+            <br />
+            For example, &quot;100px,0px,0px&quot; will move the element up from
+            100px to 0px as it enters and aligns in the viewport.
+            <br />
           </p>
         }
         examples={[
@@ -201,11 +210,11 @@ export default function ParralaxX() {
       {/* Getting Started */}
       <section
         className={twJoin(
-          "py-20 text-center flex bg-black flex-col gap-4 items-center text-light-grey",
+          "py-20 text-left bg-black flex flex-col gap-4 text-light-grey",
           HORIZONTAL_PADDING
         )}
       >
-        <h2 className="text-sm">Getting Started</h2>
+        <h2 className="text-sm uppercase font-light">Getting Started</h2>
         <h3 className="font-bold text-white text-2xl">Install</h3>
         <code className="">npm i @parallaxx/toolkit</code>
 
@@ -225,7 +234,7 @@ export default function ParralaxX() {
 
         <h3 className="font-bold text-white text-2xl">Use</h3>
         <code>
-          {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.HALF} />`}
+          {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.FADE_IN} />`}
         </code>
       </section>
 
