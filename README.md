@@ -52,7 +52,14 @@ ParallaxX finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attrib
 
 ### Presets
 
-The toolkit provides several presets for convenience. Simply import "TranslatePreset" and "OpacityPreset" to use them.
+The toolkit provides several presets for convenience. Import "TranslatePreset" and "OpacityPreset" to use them:
+
+```jsx
+<div
+  data-pxx-translate={TranslatePreset.SLOW}
+  data-pxx-opacity={OpacityPreset.FADE_IN_OUT}
+></div>
+```
 
 ### Custom Values
 
@@ -69,8 +76,8 @@ Opacity values range between 0 and 1.
 <div data-pxx-translate="120px,0,-120px" data-pxx-opacity="0.2,1.0,1.0"></div>
 
 // Translate the element from 10vh to -20vh as it moves through the view. Aligning in the center (0)
-// Fade the element from 0 opacity to 1.0 as it reaches the center of the view, and then back out again as it exits.
-<div data-pxx-translate="10vh,0,-20vh" data-pxx-opacity="0,1,0"></div>
+// Fade the element from 0 opacity to 1.0 as it reaches the center of the view, and then back out to 0.4 as it exits.
+<div data-pxx-translate="10vh,0,-20vh" data-pxx-opacity="0,1,0.4"></div>
 ```
 
 #### Random Values

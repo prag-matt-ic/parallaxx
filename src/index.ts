@@ -91,20 +91,20 @@ class ParallaxX {
 
     const parseValues = (value: string, isTranslate: boolean): Pxx => {
       // Parse string into enter, middle, and exit values
-      // Translate can be anything that CSS translate3d supports: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
-      // Opacity can be any value between 0 and 1
       const values = value.split(",");
-      console.log({ values });
       if (values?.length === 3) {
         let [enter, middle, exit] = values;
         if (enter.includes("random")) enter = getRandomValue(enter);
         if (middle.includes("random")) middle = getRandomValue(middle);
         if (exit.includes("random")) exit = getRandomValue(exit);
-        console.log({ enter, middle, exit });
         return { enter, middle, exit };
       }
+      // TODO if opacity, clamp values between 0 and 1
       return isTranslate ? NO_TRANSLATE : NO_OPACITY;
     };
+
+    // Translate can be anything that CSS translate3d supports: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
+    // Opacity can be any value between 0 and 1
 
     const translate = element.getAttribute("data-pxx-translate");
     if (!!translate) pxx.translate = parseValues(translate, true);
