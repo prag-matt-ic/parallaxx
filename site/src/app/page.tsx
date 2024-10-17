@@ -71,7 +71,7 @@ export default function ParralaxX() {
             </a>
           </h2>
           <ul className="relative flex items-center gap-4 p-0 text-white text-lg">
-            <li>✅ Miniscule footprint (&lt;5kb)</li>
+            <li>✅ Minuscule footprint (&lt;5kb)</li>
             <li>✅ Easy to use</li>
             <li>✅ Maximum performance</li>
           </ul>
