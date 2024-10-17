@@ -1,5 +1,6 @@
 export var TranslatePreset;
 (function (TranslatePreset) {
+    TranslatePreset["SLIDE_IN"] = "50%,0%,0%";
     TranslatePreset["SLOWER"] = "50%,0%,-50%";
     TranslatePreset["SLOW"] = "100%,0%,-100%";
     TranslatePreset["FAST"] = "200%,0%,-200%";

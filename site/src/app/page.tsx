@@ -26,8 +26,7 @@ export default function ParralaxX() {
             "relative bg-red-800 text-white top-0 w-full flex text-sm font-semibold items-center justify-center py-3 left-0 right-0 z-[100]"
           )}
         >
-          This is in early development and there are likely to be breaking
-          changes as the toolkit evolves.
+          This is in early development. Please report any issues on Github.
         </div>
         <div
           className={twJoin(
@@ -49,7 +48,7 @@ export default function ParralaxX() {
             </span>
           </h1>
           <h2 className="text-2xl text-green/70 font-semibold">
-            The quickest way to configure rediculously smooth parallax effects
+            The quickest way to configure ridiculously smooth parallax effects
           </h2>
         </div>
 
@@ -72,7 +71,7 @@ export default function ParralaxX() {
             </a>
           </h2>
           <ul className="relative flex items-center gap-4 p-0 text-white text-lg">
-            <li>✅ Miniscule footprint (5kb)</li>
+            <li>✅ Miniscule footprint (&lt;5kb)</li>
             <li>✅ Easy to use</li>
             <li>✅ Maximum performance</li>
           </ul>
