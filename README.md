@@ -52,23 +52,41 @@ ParallaxX finds elements with 'data-pxx-translate' and 'data-pxx-opacity' attrib
 
 ### Presets
 
-The toolkit provides several presets for convenience. Import "TranslatePreset" and "OpacityPreset" to use them:
+The toolkit provides several presets for convenience.
+The three values represent the enter, middle (center of the viewport), and exit values of the animation.
+
+```typescript
+enum TranslatePreset {
+  SLOWER = "50%,0%,-50%",
+  SLOW = "100%,0%,-100%",
+  FAST = "200%,0%,-200%",
+  FASTER = "300%,0%,-300%",
+}
+
+enum OpacityPreset {
+  FADE_IN = "0,1,1",
+  FADE_IN_OUT = "0,1,0",
+  HALF_FADE_IN = "0.5,1,1",
+  HALF_FADE_IN_OUT = "0.5,1,0.5",
+}
+```
 
 ```jsx
 <div
-  data-pxx-translate={TranslatePreset.SLOW}
+  data-pxx-translate={TranslatePreset.SLOWER}
   data-pxx-opacity={OpacityPreset.FADE_IN_OUT}
 ></div>
 ```
 
+[View the website](https://parallaxx-site.vercel.app/)
+
 ### Custom Values
 
 For greater flexibility you can provide custom values.
-These are comma-separated strings representing the enter, middle, and exit states.
+These are comma-separated strings representing the enter, middle, and exit values.
 
-Translate values are anything that CSS [translate3d](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d) supports.
-
-Opacity values range between 0 and 1.
+Translate values can be anything that CSS [translate3d](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d) supports.
+Opacity values should range between 0 and 1.
 
 ```jsx
 // Translate the element from 120px to -120px as it moves through the view.
@@ -82,12 +100,27 @@ Opacity values range between 0 and 1.
 
 #### Random Values
 
-Values can be randomly generated too - which is useful for groups of mapped elements.
+Values can be randomly generated too - which is useful for sets of mapped elements.
 The format is "random(min|max)"
 
 ```jsx
 // The following will result in a random exit value between -10px and -200px
-<div data-pxx-translate="0,0,random(-10,-200)"
+<div data-pxx-translate="0,0,random(-10|-200)"
+```
+
+#### Adjusting Range
+
+The range controls when the animation timeline starts and ends.
+With cover (default) the timeline begins as the element starts to enter the view, and ends when it has completely left it.
+With contain the timeline begins after the entire element has entered the view, and ends as it starts to leave.
+
+[More Info](https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=cover&range-start-percentage=0&range-end-name=cover&range-end-percentage=100&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=reveal&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes)
+
+```typescript
+export enum RangePreset {
+  COVER = "cover 0% cover 100%", // Default
+  CONTAIN = "contain 0% contain 100%",
+}
 ```
 
 ## How It Works

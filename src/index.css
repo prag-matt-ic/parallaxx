@@ -1,3 +1,5 @@
+/* Update the build to minify the CSS file and then copy it into the dist folder. */
+
 /* Translate */
 @property --pxx-enter-translate {
   inherits: false;
