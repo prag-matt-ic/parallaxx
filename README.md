@@ -108,7 +108,7 @@ The format is "random(min|max)"
 <div data-pxx-translate="0,0,random(-10|-200)"
 ```
 
-#### Adjusting Range
+### Adjusting Range
 
 The range controls when the animation timeline starts and ends.
 With cover (default) the timeline begins as the element starts to enter the view, and ends when it has completely left it.
