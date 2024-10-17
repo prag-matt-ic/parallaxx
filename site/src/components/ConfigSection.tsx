@@ -49,7 +49,7 @@ const ConfigSection: FC<Props> = ({
         {examples.map(({ attributes, label }, index) => (
           <div
             key={index}
-            className="relative flex size-24 items-center rounded text-sm font-medium select-none justify-center bg-light-grey p-1 uppercase"
+            className="relative flex h-24 min-w-24 items-center text-black rounded text-xs font-medium select-none justify-center bg-light-grey p-1 uppercase"
             {...attributes}
           >
             {label}

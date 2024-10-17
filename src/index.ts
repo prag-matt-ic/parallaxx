@@ -11,6 +11,7 @@ type PxxParams = {
 };
 
 export enum TranslatePreset {
+  // TODO: add SLIDE_IN preset
   SLOWER = "50%,0%,-50%",
   SLOW = "100%,0%,-100%",
   FAST = "200%,0%,-200%",

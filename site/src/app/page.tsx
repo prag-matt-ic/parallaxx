@@ -37,7 +37,7 @@ export default function ParralaxX() {
         >
           <h1
             className="flex items-center font-extrabold gap-4 tracking-tighter"
-            data-pxx-translate="0px,0px,-80px"
+            data-pxx-translate="0px,0px,-15vh"
             data-pxx-opacity="1,1,0.3"
             data-pxx-range="cover 50% contain 100%"
           >
