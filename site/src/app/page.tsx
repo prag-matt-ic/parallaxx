@@ -31,7 +31,7 @@ export default function ParralaxX() {
         </div>
         <div
           className={twJoin(
-            "flex-1 flex items-center w-full justify-center",
+            "flex-1 flex flex-col items-center w-full justify-center",
             HORIZONTAL_PADDING
           )}
         >
@@ -41,16 +41,16 @@ export default function ParralaxX() {
             data-pxx-opacity="1,1,0.3"
             data-pxx-range="cover 50% contain 100%"
           >
-            <span className="text-[#569CD6] block leading-normal code lg:text-[3vmax]">
+            <span className="text-[#569CD6] block !leading-normal code text-xl md:text-3xl">
               new
             </span>{" "}
-            <span className="text-green block code leading-normal lg:text-[8vmax]">
+            <span className="text-green block code leading-tight lg:text-[7.5vmax]">
               ParallaxX
             </span>
-            <span className="text-[#FFD602] block code py-4 leading-none code lg:text-[3vmax]">
-              ()
-            </span>
           </h1>
+          <h2 className="text-2xl text-green/70 font-semibold">
+            The quickest way to configure rediculously smooth parallax effects
+          </h2>
         </div>
 
         <div
@@ -59,9 +59,9 @@ export default function ParralaxX() {
             HORIZONTAL_PADDING
           )}
         >
-          <h2 className="relative z-10 max-w-3xl text-2xl font-bold leading-relaxed text-white">
-            A lightweight, framework-agnostic toolkit for implementing smooth
-            parallax and fade effects that leverage the native{" "}
+          <h2 className="relative z-10 max-w-3xl text-xl font-bold leading-relaxed text-white">
+            A lightweight, framework-agnostic toolkit for implementing parallax
+            and fade effects that leverage the native{" "}
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline"
               target="_blank"
@@ -76,7 +76,7 @@ export default function ParralaxX() {
             <li>✅ Easy to use</li>
             <li>✅ Maximum performance</li>
           </ul>
-          <p className="relative py-4 text-light-grey">
+          <p className="relative text-light-grey">
             Chrome/Edge: no polyfill, Safari: with polyfill
           </p>
         </div>
@@ -301,13 +301,13 @@ export default function ParralaxX() {
       </section>
 
       {/* Showcae */}
-      <section className={twJoin(HORIZONTAL_PADDING, "h-svh py-20")}>
+      <section className={twJoin(HORIZONTAL_PADDING, "h-80 py-20")}>
         <h2 className="text-2xl font-bold text-light-grey">
           Showcase coming soon...
         </h2>
       </section>
 
-      {/* TODO: add performance testing. */}
+      <footer></footer>
     </main>
   );
 }
