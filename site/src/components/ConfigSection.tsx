@@ -23,12 +23,12 @@ const ConfigSection: FC<Props> = ({
     <section
       className={twJoin(
         HORIZONTAL_PADDING,
-        "relative grid grid-rows-1 grid-cols-[auto_1fr] py-24"
+        "relative grid grid-rows-1 grid-cols-[auto_1fr] py-24 gap-8"
       )}
     >
       {/* info */}
       <div
-        className="bg-light-grey/10 space-y-4 p-8 rounded-md"
+        className="bg-light-grey/10 space-y-4 p-8 rounded-md text-light-grey"
         data-pxx-opacity="0,1,0.5"
       >
         <h2 className="text-3xl font-extrabold text-white">{heading}</h2>

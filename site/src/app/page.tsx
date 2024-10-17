@@ -18,12 +18,11 @@ export default function ParralaxX() {
   }, []);
 
   return (
-    <main className="w-full bg-off-black font-sans">
+    <main className="w-full bg-off-black font-sans text-white">
       <header className="relative flex h-svh select-none flex-col items-center justify-center text-center">
         <div
           className={twJoin(
             HORIZONTAL_PADDING,
-
             "relative bg-red-800 text-white top-0 w-full flex text-sm font-semibold items-center justify-center py-3 left-0 right-0 z-[100]"
           )}
         >
@@ -32,31 +31,26 @@ export default function ParralaxX() {
         </div>
         <div
           className={twJoin(
-            "flex-1 flex items-center w-full justify-center gap-4 font-extrabold tracking-tight",
+            "flex-1 flex items-center w-full justify-center",
             HORIZONTAL_PADDING
           )}
         >
-          <span
-            className="text-[#569CD6] block leading-none code text-2xl lg:text-[3vmax]"
-            data-pxx-translate="0px,0px,-20px"
+          <h1
+            className="flex items-center font-extrabold gap-4 tracking-tighter"
+            data-pxx-translate="0px,0px,-80px"
+            data-pxx-opacity="1,1,0.3"
             data-pxx-range="cover 50% contain 100%"
           >
-            new
-          </span>{" "}
-          <span
-            className="text-green block code leading-none text-4xl lg:text-[5vmax]"
-            data-pxx-translate="0px,0px,-100px"
-            data-pxx-range="cover 50% contain 100%"
-          >
-            ParallaxX
-          </span>
-          <span
-            className="text-[#FFD602] block code py-4 leading-none code text-2xl lg:text-[3vmax]"
-            data-pxx-translate="0px,0px,-40px"
-            data-pxx-range="cover 50% contain 100%"
-          >
-            ()
-          </span>
+            <span className="text-[#569CD6] block leading-normal code lg:text-[3vmax]">
+              new
+            </span>{" "}
+            <span className="text-green block code leading-normal lg:text-[8vmax]">
+              ParallaxX
+            </span>
+            <span className="text-[#FFD602] block code py-4 leading-none code lg:text-[3vmax]">
+              ()
+            </span>
+          </h1>
         </div>
 
         <div
@@ -91,7 +85,7 @@ export default function ParralaxX() {
       <section
         data-pxx-opacity="0,1,1"
         className={twJoin(
-          "py-20 grid grid-cols-2 items-stretch gap-10 xl:gap-16 text-light-grey",
+          "py-20 grid grid-cols-2 items-stretch gap-10 xl:gap-16",
           HORIZONTAL_PADDING
         )}
       >
@@ -115,7 +109,10 @@ export default function ParralaxX() {
         </div>
 
         {/* Limitations */}
-        <div className="space-y-4" data-pxx-translate="160px,0,0">
+        <div
+          className="space-y-4 text-light-grey"
+          data-pxx-translate="160px,0,0"
+        >
           <h2 className="text-2xl font-bold">Limitations</h2>
           <p className="text-lg">
             Functionality is restricted by what browsers support natively. If
@@ -211,7 +208,16 @@ export default function ParralaxX() {
       <ConfigSection
         heading="Animation Range"
         description={
-          <>{/* TODO: explain how these are fed into variables */}</>
+          <p className="max-w-lg">
+            The range controls when the animation timeline starts and ends.
+            <br />
+            <br />
+            With &quot;cover&quot; (default) the timeline begins as the element
+            starts to enter the view, and ends when it has completely left.
+            <br />
+            With &quot;contain&quot; it begins after the entire element has
+            entered the view, and ends before it starts to leave.
+          </p>
         }
         examples={[
           ...Object.keys(RangePreset).map((key) => {
