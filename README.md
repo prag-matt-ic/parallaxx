@@ -2,8 +2,8 @@
 
 A lightweight, framework-agnostic toolkit for implementing smooth parallax and fade effects that leverage the native [ScrollTimeline](https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline) API.
 
-✅ Miniscule footprint (5kb)  
-✅ Easy to use  
+✅ Minuscule footprint (5kb)  
+✅ Easy to use presets
 ✅ Maximum performance
 
 ## Installation
