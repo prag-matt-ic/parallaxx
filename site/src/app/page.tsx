@@ -36,7 +36,7 @@ export default function ParralaxX() {
         </a>
       </div>
 
-      <header className="relative flex h-svh select-none flex-col items-center justify-center text-center bg-gradient-to-b from-light to-off-black to-60%">
+      <header className="relative flex h-svh select-none flex-col items-center justify-center text-center bg-gradient-to-b from-light to-off-black to-70%">
         <div
           data-pxx-opacity={OpacityPreset.FADE_OUT}
           data-pxx-range="cover 50% cover 95%"
@@ -45,15 +45,15 @@ export default function ParralaxX() {
             HORIZONTAL_PADDING
           )}
         >
-          <h1 className="flex font-chivo items-center uppercase font-extrabold gap-4 tracking-tighter leading-tight lg:text-[7.5vmax]">
-            ParallaxX
+          <h1 className="flex font-chivo items-center uppercase font-extrabold gap-4 tracking-tighter leading-tight text-[10vmax]">
+            Parallax<span className="text-[#A1F6D1]">X</span>
           </h1>
         </div>
 
         <div
           data-pxx-translate="0,0,-100px"
           data-pxx-range="normal cover 100%"
-          className="relative w-full py-20 bg-mid flex items-center justify-center z-10 -mt-10"
+          className="relative w-full py-20 bg-mid flex items-center justify-center z-10 -mt-[6vh]"
         >
           <h2 className="z-10 max-w-2xl text-xl font-bold leading-relaxed text-white">
             A lightweight, framework-agnostic toolkit for implementing parallax

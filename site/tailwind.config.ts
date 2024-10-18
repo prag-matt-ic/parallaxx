@@ -23,6 +23,10 @@ const config: Config = {
         black: "#0A090C",
         transparent: "transparent",
       },
+      screens: {
+        // Extra wide
+        "3xl": "1800px",
+      },
     },
   },
   plugins: [],
