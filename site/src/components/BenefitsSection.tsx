@@ -34,12 +34,12 @@ const BenefitsSection: FC = () => {
         isBenefit
       />
       <BenefitTextBlock
-        heading="Simple"
-        paragraph="Opinionated presets make it extremely easy to add nice parallax effects to your project."
-      />
-      <BenefitTextBlock
         heading="Accessible"
         paragraph="Respects user preferences for reduced motion."
+      />
+      <BenefitTextBlock
+        heading="Simple"
+        paragraph="Opinionated presets make it extremely easy to add nice parallax effects to your project. Plus there's no need to write a single line of CSS."
       />
       <BenefitTextBlock
         heading="But Limited"
@@ -54,7 +54,8 @@ const BenefitsSection: FC = () => {
             children. &quot;overflow: clip&quot; can be used instead.
             <br />
             <br />
-            Only supports vertical scrolling and Y axis translations.
+            Only supports vertical scrolling and Y axis translations (at the
+            moment).
           </span>
         }
         isBenefit={false}
@@ -91,7 +92,7 @@ const BenefitTextBlock: FC<{
       <div className="flex items-center gap-4">
         <div
           className={twJoin(
-            "size-4 rounded-sm",
+            "size-3 rounded-sm",
             isBenefit ? "bg-green" : "bg-red"
           )}
         />

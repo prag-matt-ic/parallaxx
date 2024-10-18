@@ -1,5 +1,5 @@
 import React, { type FC } from "react";
-import { OpacityPreset } from "../../../dist";
+import { OpacityPreset } from "@parallaxx/toolkit";
 import { twJoin } from "tailwind-merge";
 import { HORIZONTAL_PADDING } from "./styles";
 
@@ -20,9 +20,9 @@ const Header: FC = () => {
       </div>
 
       <div
-        data-pxx-translate="0,0,-100px"
+        data-pxx-translate="0,0,-80px"
         data-pxx-range="normal cover 100%"
-        className="relative w-full py-16 bg-mid flex items-center justify-center z-10"
+        className="relative w-full py-20 bg-mid flex items-center justify-center z-10"
       >
         <h2 className="z-10 max-w-2xl text-xl font-bold leading-relaxed text-white">
           A lightweight, framework-agnostic toolkit for implementing parallax
@@ -39,10 +39,10 @@ const Header: FC = () => {
       </div>
 
       <div
-        data-pxx-translate="0,0,-160px"
+        data-pxx-translate="0,0,-120px"
         data-pxx-range="normal cover 80vh"
         className={twJoin(
-          "relative flex w-full z-20 flex-col items-center gap-10 justify-center py-16 bg-black",
+          "relative flex w-full z-20 flex-col items-center gap-10 justify-center py-20 bg-black",
           HORIZONTAL_PADDING
         )}
       >

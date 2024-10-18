@@ -1,12 +1,28 @@
-import React, { type PropsWithChildren, type FC } from "react";
+import React, { type FC } from "react";
 import { twJoin } from "tailwind-merge";
-import { HORIZONTAL_PADDING } from "./styles";
+import { H2_CLASS, H3_CLASS, HORIZONTAL_PADDING } from "./styles";
 
-const CodeBlock: FC<PropsWithChildren> = ({ children }) => {
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import shell from "highlight.js/lib/languages/shell";
+import xml from "highlight.js/lib/languages/xml";
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("shell", shell);
+hljs.registerLanguage("xml", xml);
+
+const CodeBlock: FC<{ code: string; language?: string }> = ({
+  code,
+  language = "jsx",
+}) => {
+  const highlightedCode = hljs.highlight(code, {
+    language,
+  }).value;
+
   return (
-    <code className="px-4 py-2 rounded bg-dark border border-mid w-fit">
-      {children}
-    </code>
+    <code
+      className="px-4 py-2 rounded bg-dark border border-mid w-fit text-xs sm:text-base whitespace-pre-wrap max-w-full overflow-hidden overflow-scroll"
+      dangerouslySetInnerHTML={{ __html: highlightedCode }}
+    />
   );
 };
 
@@ -19,31 +35,38 @@ const GettingStarted: FC = () => {
       )}
     >
       <div className="flex flex-col gap-6" data-pxx-opacity="0.1,1,1">
-        <h2 className="font-chivo uppercase font-extrabold text-3xl">
-          Getting Started
-        </h2>
+        <h2 className={H2_CLASS}>Getting Started</h2>
 
-        <h3 className="text-lg">TODO: Install</h3>
-        <CodeBlock>npm i @parallaxx/toolkit</CodeBlock>
+        <div className="flex flex-col gap-3">
+          <h3 className={H3_CLASS}>Install</h3>
+          <CodeBlock
+            language="shell"
+            code="npm i @parallaxx/toolkit"
+          ></CodeBlock>
+        </div>
 
-        <h3 className="text-lg">TODO: Import</h3>
-        <CodeBlock>
-          {`import {ParallaxX, TranslatePreset, OpacityPreset, RangePreset} from "@parallaxx/toolkit";`}
-          <br />
-          {`import "@parallaxx/toolkit/dist/parallaxx.css";`}
-        </CodeBlock>
+        <div className="flex flex-col gap-3">
+          <h3 className={H3_CLASS}>Import</h3>
+          <CodeBlock
+            language="javascript"
+            code={`import {ParallaxX, TranslatePreset, OpacityPreset, RangePreset} from "@parallaxx/toolkit";\nimport "@parallaxx/toolkit/dist/parallaxx.css";`}
+          />
+        </div>
 
-        <h3 className="text-lg">TODO: Initialize</h3>
-        <CodeBlock>
-          {`useLayoutEffect(() => {
-            new ParallaxX();
-          }, [])`}
-        </CodeBlock>
+        <div className="flex flex-col gap-3">
+          <h3 className={H3_CLASS}>Initialize</h3>
+          <CodeBlock
+            code={`useLayoutEffect(() => {\n  new ParallaxX()\n}, [])`}
+          />
+        </div>
 
-        <h3 className="font-bold text-white text-2xl">Use</h3>
-        <CodeBlock>
-          {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.FADE_IN} />`}
-        </CodeBlock>
+        <div className="flex flex-col gap-3">
+          <h3 className={H3_CLASS}>Use</h3>
+          <CodeBlock
+            language="xml"
+            code={`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.FADE_IN} />`}
+          />
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./atom-one-dark.min.css";
+
 export const metadata: Metadata = {
   title: "ParallaxX",
   description:
