@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "ParallaxX",
-  description: "",
+  description:
+    "A lightweight, framework-agnostic toolkit for implementing smooth parallax and fade effects that leverage the native ScrollTimeline API.",
 };
 
 import { Chivo, Inter } from "next/font/google";
