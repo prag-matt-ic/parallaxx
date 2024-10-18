@@ -1,6 +1,6 @@
 {
   "name": "@parallaxx/toolkit",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Framework-agnostic toolkit for implementing smooth parallax and fade effects using the native ScrollTimeline API. Zero dependencies, maximum performance.",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",

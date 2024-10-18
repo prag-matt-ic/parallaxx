@@ -108,11 +108,14 @@ The format is "random(min|max)"
 <div data-pxx-translate="0,0,random(-10|-200)"
 ```
 
-### Adjusting Range
+### Adjusting Animation Range
 
 The range controls when the animation timeline starts and ends.
+
 With cover (default) the timeline begins as the element starts to enter the view, and ends when it has completely left it.
 With contain the timeline begins after the entire element has entered the view, and ends as it starts to leave.
+
+You can customise these values to fine-tune the start and ending using different values.
 
 [More Info](https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=cover&range-start-percentage=0&range-end-name=cover&range-end-percentage=100&view-timeline-axis=block&view-timeline-inset=0&subject-size=smaller&subject-animation=reveal&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes)
 
@@ -121,6 +124,10 @@ export enum RangePreset {
   COVER = "cover 0% cover 100%", // Default
   CONTAIN = "contain 0% contain 100%",
 }
+```
+
+```jsx
+<div data-pxx-range={RangePreset.CONTAIN}></div>
 ```
 
 ## How It Works
