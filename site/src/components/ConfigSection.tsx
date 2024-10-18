@@ -28,7 +28,7 @@ const ConfigSection: FC<Props> = ({
     >
       {/* info */}
       <div
-        className="bg-light-grey/10 space-y-4 p-8 rounded-md text-light-grey"
+        className="bg-mid space-y-4 p-8 rounded-md text-light-grey"
         data-pxx-opacity="0,1,0.5"
       >
         <h2 className="text-3xl font-extrabold text-white">{heading}</h2>
@@ -45,7 +45,7 @@ const ConfigSection: FC<Props> = ({
       </div>
       {/* examples */}
       <div className="relative flex items-center justify-center gap-6">
-        <div className="absolute h-1 w-full bg-light-grey/10 rounded-r-md" />
+        <div className="absolute h-1 w-full bg-mid rounded-r-md" />
         {examples.map(({ attributes, label }, index) => (
           <div
             key={index}

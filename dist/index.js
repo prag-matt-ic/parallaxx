@@ -9,6 +9,7 @@ export var TranslatePreset;
 export var OpacityPreset;
 (function (OpacityPreset) {
     OpacityPreset["FADE_IN"] = "0,1,1";
+    OpacityPreset["FADE_OUT"] = "1,1,0";
     OpacityPreset["FADE_IN_OUT"] = "0,1,0";
     OpacityPreset["HALF_FADE_IN"] = "0.5,1,1";
     OpacityPreset["HALF_FADE_IN_OUT"] = "0.5,1,0.5";

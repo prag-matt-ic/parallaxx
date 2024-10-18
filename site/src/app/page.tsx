@@ -7,7 +7,7 @@ import {
   RangePreset,
   TranslatePreset,
 } from "@parallaxx/toolkit";
-import { useLayoutEffect } from "react";
+import { CSSProperties, FC, ReactNode, useLayoutEffect } from "react";
 import { twJoin } from "tailwind-merge";
 import ConfigSection from "@/components/ConfigSection";
 import { HORIZONTAL_PADDING } from "@/components/styles";
@@ -19,46 +19,43 @@ export default function ParralaxX() {
 
   return (
     <main className="w-full bg-off-black font-sans text-white">
-      <header className="relative flex h-svh select-none flex-col items-center justify-center text-center">
-        <div
-          className={twJoin(
-            HORIZONTAL_PADDING,
-            "relative bg-red-800 text-white top-0 w-full flex text-sm font-semibold items-center justify-center py-3 left-0 right-0 z-[100]"
-          )}
+      <div
+        className={twJoin(
+          HORIZONTAL_PADDING,
+          "fixed bg-red-800 text-white top-0 w-full flex bg-red text-sm font-semibold items-center justify-center py-2 left-0 right-0 z-[100]"
+        )}
+      >
+        This is in early development. Please share any ideas or issues on{" "}
+        <a
+          href="https://github.com/prag-matt-ic/parallaxx"
+          target="_blank"
+          rel="noreferrer"
+          className="underline"
         >
-          This is in early development. Please report any issues on Github.
-        </div>
+          Github
+        </a>
+      </div>
+
+      <header className="relative flex h-svh select-none flex-col items-center justify-center text-center bg-gradient-to-b from-light to-off-black to-60%">
         <div
+          data-pxx-opacity={OpacityPreset.FADE_OUT}
+          data-pxx-range="cover 50% cover 95%"
           className={twJoin(
-            "flex-1 flex flex-col items-center w-full justify-center",
+            "flex-1 flex flex-col items-center w-full justify-end",
             HORIZONTAL_PADDING
           )}
         >
-          <h1
-            className="flex items-center font-extrabold gap-4 tracking-tighter"
-            data-pxx-translate="0px,0px,-15vh"
-            data-pxx-opacity="1,1,0.3"
-            data-pxx-range="cover 50% contain 100%"
-          >
-            <span className="text-[#569CD6] block !leading-normal code text-xl md:text-3xl">
-              new
-            </span>{" "}
-            <span className="text-green block code leading-tight lg:text-[7.5vmax]">
-              ParallaxX
-            </span>
+          <h1 className="flex font-chivo items-center uppercase font-extrabold gap-4 tracking-tighter leading-tight lg:text-[7.5vmax]">
+            ParallaxX
           </h1>
-          <h2 className="text-2xl text-green/70 font-semibold">
-            The quickest way to configure ridiculously smooth parallax effects
-          </h2>
         </div>
 
         <div
-          className={twJoin(
-            "relative flex w-full z-20 flex-col items-center gap-10 justify-center py-24 bg-black",
-            HORIZONTAL_PADDING
-          )}
+          data-pxx-translate="0,0,-100px"
+          data-pxx-range="normal cover 100%"
+          className="relative w-full py-20 bg-mid flex items-center justify-center z-10 -mt-10"
         >
-          <h2 className="relative z-10 max-w-3xl text-xl font-bold leading-relaxed text-white">
+          <h2 className="z-10 max-w-2xl text-xl font-bold leading-relaxed text-white">
             A lightweight, framework-agnostic toolkit for implementing parallax
             and fade effects that leverage the native{" "}
             <a
@@ -70,61 +67,113 @@ export default function ParralaxX() {
               ScrollTimeline API
             </a>
           </h2>
+        </div>
+
+        <div
+          data-pxx-translate="0,0,-160px"
+          data-pxx-range="normal cover 80vh"
+          className={twJoin(
+            "relative flex w-full z-20 flex-col items-center gap-10 justify-center py-16 bg-black",
+            HORIZONTAL_PADDING
+          )}
+        >
           <ul className="relative flex items-center gap-4 p-0 text-white text-lg">
             <li>✅ Minuscule footprint (&lt;5kb)</li>
             <li>✅ Easy to use</li>
             <li>✅ Maximum performance</li>
           </ul>
           <p className="relative text-light-grey">
-            Chrome/Edge: no polyfill, Safari: with polyfill
+            Chrome/Edge: no polyfill, Firefox/Safari: with polyfill
           </p>
         </div>
       </header>
 
       <section
-        data-pxx-opacity="0,1,1"
         className={twJoin(
-          "py-20 grid grid-cols-2 items-stretch gap-10 xl:gap-16",
+          "relative grid grid-cols-1 lg:grid-cols-2 grid-rows-auto gap-y-16 overflow-clip pt-16 pb-40",
           HORIZONTAL_PADDING
         )}
       >
-        {/* Benefits */}
-        <div className="space-y-4" data-pxx-translate="80px,0,0">
-          <h2 className="text-2xl font-bold">Benefits</h2>
-          <p className="text-lg">
-            <span className="font-bold">Fast:</span> By using native browser
-            capabilities and minimizing reliance on JavaScript, ParallaxX
-            outperforms animation frameworks that compute animations on the main
-            thread.
-            <br />
-            <br />
-            <span className="font-bold">Simple:</span> Opinionated presets makes
-            it extremely easy to add nice parallax effects to your project.
-            <br />
-            <br />
-            <span className="font-bold">Accessible:</span> Respects user
-            preferences for reduced motion.
-          </p>
+        <div className="grid grid-cols-12 gap-2 absolute inset-0">
+          {/* map 40 elements from an empty array into <divs */}
+          {Array.from({ length: 60 }).map((_, i) => (
+            <div
+              key={i}
+              data-pxx-opacity={OpacityPreset.FADE_IN_OUT}
+              className="w-full h-full flex items-center justify-center"
+            >
+              <div
+                className="bg-mid/40 aspect-square absolute rounded"
+                data-pxx-translate="random(40|240),0,random(-40|-240)"
+                style={getBenefitBoxStyles()}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Limitations */}
-        <div
-          className="space-y-4 text-light-grey"
-          data-pxx-translate="160px,0,0"
-        >
-          <h2 className="text-2xl font-bold">Limitations</h2>
-          <p className="text-lg">
-            Functionality is restricted by what browsers support natively. If
-            you need advanced tweening, consider a more complete solution like
-            GSAP.
+        <BenefitTextBlock
+          heading="Fast"
+          paragraph="By utilizing native browser capabilities and minimizing reliance on JavaScript, ParallaxX outperforms animation frameworks that compute animations on the main thread."
+          isBenefit
+        />
+        <BenefitTextBlock
+          heading="Simple"
+          paragraph="Opinionated presets make it extremely easy to add nice parallax effects to your project."
+        />
+        <BenefitTextBlock
+          heading="Accessible"
+          paragraph="Respects user preferences for reduced motion."
+        />
+        <BenefitTextBlock
+          heading="But Limited"
+          paragraph={
+            <span className="text-light-grey text-sm">
+              Functionality is restricted by what browsers support natively. If
+              you need advanced tweening, consider a more complete solution like
+              GSAP
+              <br />
+              <br />
+              &quot;overflow: hidden&quot; prevents effects from running on
+              children. &quot;overflow: clip&quot; can be used instead.
+              <br />
+              <br />
+              Only supports vertical scrolling and Y axis translations.
+            </span>
+          }
+          isBenefit={false}
+        />
+      </section>
+
+      {/* Getting Started */}
+      <section
+        className={twJoin(
+          "relative z-50 py-20 text-left bg-black  text-light-grey",
+          HORIZONTAL_PADDING
+        )}
+      >
+        <div className="flex flex-col gap-4" data-pxx-opacity="0.1,1,1">
+          <h2 className="text-sm uppercase font-light">Getting Started</h2>
+          <h3 className="font-bold text-white text-2xl">Install</h3>
+          <code className="">npm i @parallaxx/toolkit</code>
+
+          <h3 className="font-bold text-white text-2xl">Import</h3>
+          <code>
+            {`import {ParallaxX, TranslatePreset, OpacityPreset, RangePreset} from "@parallaxx/toolkit";`}
             <br />
-            <br />
-            overflow: hidden prevents effects from running on children.
-            <br />
-            <br />
-            Currently only setup to support vertical scrolling and Y axis
-            translations.
-          </p>
+            {`import "@parallaxx/toolkit/dist/parallaxx.css";`}
+          </code>
+
+          <h3 className="font-bold text-white text-2xl">Initialize</h3>
+          <code>
+            {`useLayoutEffect(() => {
+            new ParallaxX();
+          }, [])`}
+          </code>
+
+          <h3 className="font-bold text-white text-2xl">Use</h3>
+          <code>
+            {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.FADE_IN} />`}
+          </code>
         </div>
       </section>
 
@@ -266,47 +315,52 @@ export default function ParralaxX() {
         </div>
       </section>
 
-      {/* Getting Started */}
-      <section
-        className={twJoin(
-          "py-20 text-left bg-black  text-light-grey",
-          HORIZONTAL_PADDING
-        )}
-      >
-        <div className="flex flex-col gap-4" data-pxx-opacity="0.1,1,1">
-          <h2 className="text-sm uppercase font-light">Getting Started</h2>
-          <h3 className="font-bold text-white text-2xl">Install</h3>
-          <code className="">npm i @parallaxx/toolkit</code>
-
-          <h3 className="font-bold text-white text-2xl">Import</h3>
-          <code>
-            {`import {ParallaxX, TranslatePreset, OpacityPreset, RangePreset} from "@parallaxx/toolkit";`}
-            <br />
-            {`import "@parallaxx/toolkit/dist/parallaxx.css";`}
-          </code>
-
-          <h3 className="font-bold text-white text-2xl">Initialize</h3>
-          <code>
-            {`useLayoutEffect(() => {
-            new ParallaxX();
-          }, [])`}
-          </code>
-
-          <h3 className="font-bold text-white text-2xl">Use</h3>
-          <code>
-            {`<div data-pxx-translate={TranslatePreset.FAST} data-pxx-opacity={OpacityPreset.FADE_IN} />`}
-          </code>
-        </div>
-      </section>
-
-      {/* Showcae */}
-      <section className={twJoin(HORIZONTAL_PADDING, "h-80 py-20")}>
-        <h2 className="text-2xl font-bold text-light-grey">
-          Showcase coming soon...
-        </h2>
-      </section>
-
       <footer></footer>
     </main>
   );
 }
+
+function getBenefitBoxStyles(): {
+  width: CSSProperties["width"];
+  height: CSSProperties["height"];
+  margin: CSSProperties["margin"];
+} {
+  // Random size between 16 and 200. In 8px steps.
+  const size = Math.floor(Math.random() * 24) * 8 + 16;
+  // random marginLeft between -240px and 240px
+  const marginLeft = Math.floor(Math.random() * 60) * 8 - 240;
+  // random marginTop between -120px and 120px
+  const marginTop = Math.floor(Math.random() * 30) * 8 - 120;
+  const margin = `${marginTop}px 0px 0px ${marginLeft}px`;
+  return {
+    width: size,
+    height: size,
+    margin: margin,
+  };
+}
+
+const BenefitTextBlock: FC<{
+  heading: string;
+  paragraph: ReactNode;
+  isBenefit?: boolean;
+}> = ({ heading, paragraph, isBenefit = true }) => {
+  return (
+    <div
+      data-pxx-opacity={OpacityPreset.FADE_IN}
+      className="relative flex flex-col gap-4"
+    >
+      <div className="flex items-center gap-4">
+        <div
+          className={twJoin(
+            "size-4 rounded-sm",
+            isBenefit ? "bg-green" : "bg-red"
+          )}
+        />
+        <h3 className="uppercase font-chivo text-4xl font-extrabold">
+          {heading}
+        </h3>
+      </div>
+      <p className="text-light-grey max-w-xl">{paragraph}</p>
+    </div>
+  );
+};

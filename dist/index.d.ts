@@ -7,6 +7,7 @@ export declare enum TranslatePreset {
 }
 export declare enum OpacityPreset {
     FADE_IN = "0,1,1",
+    FADE_OUT = "1,1,0",
     FADE_IN_OUT = "0,1,0",
     HALF_FADE_IN = "0.5,1,1",
     HALF_FADE_IN_OUT = "0.5,1,0.5"
