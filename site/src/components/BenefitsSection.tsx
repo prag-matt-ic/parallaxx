@@ -7,7 +7,7 @@ const BenefitsSection: FC = () => {
   return (
     <section
       className={twJoin(
-        "relative -mt-40 grid grid-cols-1 lg:grid-cols-2 grid-rows-auto gap-y-16 overflow-clip py-40",
+        "relative -mt-32 grid grid-cols-1 lg:grid-cols-2 grid-rows-auto gap-y-16 overflow-clip py-40",
         HORIZONTAL_PADDING
       )}
     >
@@ -20,7 +20,7 @@ const BenefitsSection: FC = () => {
             className="w-full h-full flex items-center justify-center"
           >
             <div
-              className="bg-mid/40 aspect-square absolute rounded"
+              className="bg-mid/20 aspect-square absolute rounded"
               data-pxx-translate="random(80|240),0,random(-80|-240)"
               style={getBackgroundBoxStyles()}
             />
@@ -44,7 +44,7 @@ const BenefitsSection: FC = () => {
       <BenefitTextBlock
         heading="But Limited"
         paragraph={
-          <span className="text-light-grey text-sm">
+          <span className="text-sm">
             Functionality is restricted by what browsers support natively. If
             you need advanced tweening, consider a more complete solution like
             GSAP
@@ -99,7 +99,7 @@ const BenefitTextBlock: FC<{
           {heading}
         </h3>
       </div>
-      <p className="text-light-grey max-w-xl">{paragraph}</p>
+      <p className="text-light-grey max-w-xl text-lg">{paragraph}</p>
     </div>
   );
 };
