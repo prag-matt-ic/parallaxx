@@ -1,4 +1,4 @@
-import React, { useEffect, type FC } from "react";
+import React, { type FC } from "react";
 import { twJoin } from "tailwind-merge";
 import { H2_CLASS, H3_CLASS, HORIZONTAL_PADDING } from "./styles";
 import hljs from "highlight.js";
@@ -26,10 +26,6 @@ const CodeBlock: FC<{ code: string; language?: string }> = ({
 };
 
 const GettingStarted: FC = () => {
-  // useEffect(() => {
-  //   hljs.initHighlighting();
-  // }, []);
-
   return (
     <section
       className={twJoin(
