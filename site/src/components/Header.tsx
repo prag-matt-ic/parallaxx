@@ -1,4 +1,3 @@
-import { OpacityPreset } from '@parallaxx/toolkit'
 import Image from 'next/image'
 import React, { type FC } from 'react'
 import { twJoin } from 'tailwind-merge'
@@ -8,15 +7,18 @@ import edgeIcon from '@/assets/edge.svg'
 import firefoxIcon from '@/assets/firefox.svg'
 import safariIcon from '@/assets/safari.svg'
 
+import ParallaxBoxes from './ParallaxBoxes'
 import { HORIZONTAL_PADDING } from './styles'
 
 const Header: FC = () => {
   return (
     <header className="to-off-black relative flex h-svh select-none flex-col items-center justify-center bg-gradient-to-b from-light text-center">
+      <ParallaxBoxes className="grid-cols-8" boxClassName="bg-light/20" />
+
       <div
-        data-pxx-opacity={OpacityPreset.FADE_OUT}
-        data-pxx-range="cover 50% cover 95%"
-        className={twJoin('flex w-full flex-1 flex-col items-center justify-end', HORIZONTAL_PADDING)}>
+        // data-pxx-opacity={OpacityPreset.FADE_OUT}
+        // data-pxx-range="cover 50% cover 95%"
+        className={twJoin('relative flex w-full flex-1 flex-col items-center justify-end', HORIZONTAL_PADDING)}>
         <h1 className="-mb-5 flex font-chivo text-[64px] font-extrabold uppercase !leading-tight tracking-tighter sm:-mb-9 sm:text-[120px] xl:-mb-12 xl:text-[160px]">
           Parallax<span className="text-[#A1F6D1]">X</span>
         </h1>

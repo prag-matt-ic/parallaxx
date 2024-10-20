@@ -11,6 +11,7 @@ import opacityIcon from '@/assets/icons/opacity.svg'
 import rangeIcon from '@/assets/icons/range.svg'
 import translateIcon from '@/assets/icons/translate.svg'
 import BenefitsSection from '@/components/BenefitsSection'
+import CodeBlock from '@/components/CodeBlock'
 import GettingStarted from '@/components/GettingStarted'
 import Header from '@/components/Header'
 import { HORIZONTAL_PADDING } from '@/components/styles'
@@ -59,7 +60,7 @@ export default function ParralaxX() {
         icon={<Image src={rangeIcon} alt="range" className="size-10 object-contain" />}
       />
 
-      {/* Random - performance */}
+      {/* Random - performance test */}
       <section className={twJoin(HORIZONTAL_PADDING, 'relative my-32 h-[50vh]')}>
         <div className="absolute inset-0 grid grid-cols-[repeat(256,1fr)]">
           {new Array(256).fill('').map((_, i) => {
@@ -75,10 +76,15 @@ export default function ParralaxX() {
         </div>
         <div className="relative h-full w-full py-12">
           <h2 className="text-2xl font-bold text-white">Random Values</h2>
-          <p className="text-lg text-light-grey">256 elements with random translate values.</p>
-          <code className="code text-green">
-            {`<div data-pxx-range={RangePreset.CONTAIN} data-pxx-translate="0,random(-20|-160),-15vh" />`}
-          </code>
+          <p className="text-lg text-light-grey">
+            256 elements with random translate values.
+            <br />
+            <br />
+            <CodeBlock
+              language="xml"
+              code='<div data-pxx-range={RangePreset.CONTAIN} data-pxx-translate="0,random(-20|-160),-15vh"'
+            />
+          </p>
         </div>
       </section>
 

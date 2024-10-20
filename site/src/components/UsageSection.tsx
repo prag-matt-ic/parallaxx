@@ -155,8 +155,8 @@ type Props = {
 
 const UsageSection: FC<Props> = ({ heading, icon, type, className }) => {
   const renderExamples = (nodes: ReactNode): ReactNode => (
-    <div className="relative flex w-fit items-center justify-center gap-4 py-20">
-      <div className="absolute -left-6 size-3 rounded-sm bg-green" />
+    <div className="relative flex w-fit flex-col justify-center gap-4 py-20 md:flex-row md:items-center">
+      <div className="absolute -left-6 size-3 rounded-sm bg-light" />
       {nodes}
     </div>
   )
