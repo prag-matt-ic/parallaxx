@@ -38,8 +38,5 @@
   "scripts": {
     "build": "tsc && postcss src/index.css -o dist/parallaxx.css && terser dist/index.js --compress --mangle --source-map --output dist/index.min.js",
     "publish": "npm publish --access public"
-  },
-  "dependencies": {
-    "highlight.js": "^11.10.0"
   }
 }

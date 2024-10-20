@@ -1,8 +1,7 @@
-import React, { type FC } from "react";
+import React, { useEffect, type FC } from "react";
 import { twJoin } from "tailwind-merge";
 import { H2_CLASS, H3_CLASS, HORIZONTAL_PADDING } from "./styles";
-
-import hljs from "highlight.js/lib/core";
+import hljs from "highlight.js";
 import javascript from "highlight.js/lib/languages/javascript";
 import shell from "highlight.js/lib/languages/shell";
 import xml from "highlight.js/lib/languages/xml";
@@ -20,13 +19,17 @@ const CodeBlock: FC<{ code: string; language?: string }> = ({
 
   return (
     <code
-      className="px-4 py-2 rounded bg-dark border border-mid w-fit text-xs sm:text-base whitespace-pre-wrap max-w-full overflow-hidden overflow-scroll"
+      className="px-4 py-2 rounded bg-dark border border-mid w-fit text-xs sm:text-base whitespace-pre-wrap max-w-full sm:overflow-hidden overflow-scroll"
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
   );
 };
 
 const GettingStarted: FC = () => {
+  // useEffect(() => {
+  //   hljs.initHighlighting();
+  // }, []);
+
   return (
     <section
       className={twJoin(
