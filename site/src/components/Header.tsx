@@ -13,7 +13,7 @@ import { HORIZONTAL_PADDING } from './styles'
 const Header: FC = () => {
   return (
     <header className="to-off-black relative flex h-svh select-none flex-col items-center justify-center bg-gradient-to-b from-light text-center">
-      <ParallaxBoxes className="grid-cols-8" boxClassName="bg-light/20" />
+      <ParallaxBoxes className="grid-cols-8" boxCount={32} boxClassName="bg-light/20" />
 
       <div
         // data-pxx-opacity={OpacityPreset.FADE_OUT}

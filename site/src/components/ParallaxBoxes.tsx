@@ -8,7 +8,7 @@ type Props = {
   boxClassName?: string
 }
 
-const ParallaxBoxes: FC<Props> = ({ className, boxCount = 60, boxClassName }) => {
+const ParallaxBoxes: FC<Props> = ({ className, boxCount = 48, boxClassName }) => {
   return (
     <div className={twMerge('absolute inset-0 grid grid-cols-12 gap-2 overflow-clip', className)}>
       {Array.from({ length: boxCount }).map((_, i) => (

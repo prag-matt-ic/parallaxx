@@ -85,10 +85,11 @@ const CUSTOM_DESCRIPTIONS: Record<Props['type'], ReactNode> = {
       value.
       <br />
       <br />
-      <CodeBlock language="xml" code={`<div data-pxx-translate="10vh,0,-10vh" />`} />
-      <br />
-      The above example will animate the element from 10vh as it enters the view, to 0 as it aligns in the viewport, and
+      The following would animate the element from 10vh as it enters the view, to 0 as it aligns in the viewport, and
       then to -10vh as it exits at the top.
+      <br />
+      <br />
+      <CodeBlock language="xml" code={`<div data-pxx-translate="10vh,0,-10vh" />`} />
     </>
   ),
   Opacity: (

@@ -1,5 +1,7 @@
 # ParallaxX Toolkit
 
+<video src="https://parallaxx-site.vercel.app/parallaxx.mp4" width="1618" height="962" controls playinline muted autoplay></video>
+
 A lightweight, framework-agnostic toolkit for implementing smooth parallax and fade effects that leverage the native [ScrollTimeline](https://developer.mozilla.org/en-US/docs/Web/API/ScrollTimeline) API.
 
 ✅ Minuscule footprint (5kb)  
